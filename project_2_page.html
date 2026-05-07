@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Ghasadiya Hastin - HW2 Web Development -->
+  <title>Learn More About Neural Networks: Deep Learning Applications</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: #f4f1eb;
+      color: #2c2c2c;
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 400;
+      line-height: 1.8;
+    }
+
+    header {
+      background-color: #1a1a2e;
+      color: #f4f1eb;
+      padding: 60px 40px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    header p.subtitle {
+      font-size: 1rem;
+      font-weight: 300;
+      color: #a8b2c8;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    nav {
+      background-color: #16213e;
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      padding: 14px 40px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #a8b2c8;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: #e8c97e; }
+
+    /* DIV STYLING - REQUIRED FOR PROJECT 2 */
+    .main-content {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 24px;
+      background-color: #ffffff;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* SPAN STYLING - REQUIRED FOR PROJECT 2 */
+    .highlight-term {
+      background-color: #e8c97e;
+      color: #1a1a2e;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 16px;
+      border-left: 4px solid #e8c97e;
+      padding-left: 16px;
+    }
+
+    p {
+      font-size: 1.05rem;
+      color: #3a3a3a;
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+
+    .application-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin: 32px 0;
+    }
+
+    .app-card {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #f4f1eb;
+      border-radius: 8px;
+      padding: 28px 24px;
+      text-align: left;
+    }
+
+    .app-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: #e8c97e;
+      margin-bottom: 12px;
+    }
+
+    .app-card p {
+      font-size: 0.95rem;
+      color: #c9d1e0;
+      margin-bottom: 0;
+    }
+
+    .comparison-box {
+      background-color: #f9f7f2;
+      border-left: 4px solid #e8c97e;
+      padding: 24px;
+      margin: 32px 0;
+      border-radius: 4px;
+    }
+
+    .comparison-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: #1a1a2e;
+      margin-bottom: 12px;
+    }
+
+    .comparison-box p {
+      margin-bottom: 10px;
+    }
+
+    .tech-list {
+      background-color: #1a1a2e;
+      color: #f4f1eb;
+      padding: 32px;
+      border-radius: 8px;
+      margin: 32px 0;
+    }
+
+    .tech-list h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: #e8c97e;
+      margin-bottom: 16px;
+    }
+
+    .tech-list ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .tech-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid #2c2c4e;
+      font-size: 1rem;
+    }
+
+    .tech-list li:before {
+      content: "▸ ";
+      color: #e8c97e;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .tech-list li:last-child {
+      border-bottom: none;
+    }
+
+    .back-link {
+      display: inline-block;
+      background-color: #e8c97e;
+      color: #1a1a2e;
+      padding: 12px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 32px;
+      transition: background-color 0.3s;
+    }
+
+    .back-link:hover {
+      background-color: #d4b568;
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid #d8d2c4;
+      margin: 48px 0;
+    }
+
+    footer {
+      background-color: #1a1a2e;
+      color: #a8b2c8;
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 0.9rem;
+    }
+
+    footer strong { color: #e8c97e; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Deeper Into Neural Networks</h1>
+  <p class="subtitle">Exploring Deep Learning Applications and Modern Architectures</p>
+</header>
+
+<nav>
+  <a href="index_Project_1.html">← Back to Project 1</a>
+  <a href="#applications">Applications</a>
+  <a href="#architectures">Architectures</a>
+  <a href="#future">Future</a>
+</nav>
+
+<!-- DIV ELEMENT - REQUIRED FOR PROJECT 2 -->
+<div class="main-content">
+
+  <section id="applications">
+    <h2 class="section-title">Real-World Applications</h2>
+
+    <p>
+      Neural networks have evolved far beyond basic image recognition. Today, they power some of the most
+      sophisticated AI systems in the world. Let's explore how <span class="highlight-term">deep learning</span>
+      is transforming different industries and changing how we live.
+    </p>
+
+    <div class="application-grid">
+      <div class="app-card">
+        <h3>🎨 Creative AI</h3>
+        <p>
+          Tools like DALL-E and Midjourney use neural networks to generate stunning artwork from text descriptions.
+          These systems understand both language and visual patterns.
+        </p>
+      </div>
+
+      <div class="app-card">
+        <h3>🧬 Protein Folding</h3>
+        <p>
+          AlphaFold uses deep learning to predict how proteins fold in 3D space — solving a 50-year-old problem
+          that could accelerate drug discovery.
+        </p>
+      </div>
+
+      <div class="app-card">
+        <h3>🎮 Game AI</h3>
+        <p>
+          AlphaGo and AlphaZero defeated world champions in chess and Go using neural networks that learn
+          complex strategies through self-play.
+        </p>
+      </div>
+
+      <div class="app-card">
+        <h3>🗣️ Natural Language</h3>
+        <p>
+          ChatGPT, Claude, and GPT-4 use <span class="highlight-term">transformer networks</span> to understand
+          and generate human language with remarkable accuracy.
+        </p>
+      </div>
+    </div>
+
+    <hr class="divider" />
+  </section>
+
+  <section id="architectures">
+    <h2 class="section-title">Neural Network Architectures</h2>
+
+    <p>
+      Different types of neural networks are designed for different tasks. Understanding these architectures
+      helps us appreciate why each one excels in its domain.
+    </p>
+
+    <div class="comparison-box">
+      <h3>Convolutional Neural Networks (CNNs)</h3>
+      <p>
+        <strong>Best for:</strong> Image and video analysis
+      </p>
+      <p>
+        CNNs use filters to detect features like edges, corners, and textures. They're excellent at tasks like
+        facial recognition, medical imaging, and autonomous vehicle perception. The key innovation is
+        <span class="highlight-term">parameter sharing</span> — the same filter scans the entire image,
+        making the network much more efficient.
+      </p>
+    </div>
+
+    <div class="comparison-box">
+      <h3>Recurrent Neural Networks (RNNs)</h3>
+      <p>
+        <strong>Best for:</strong> Sequential data and time series
+      </p>
+      <p>
+        RNNs have memory — they process sequences one item at a time, carrying information forward. This makes them
+        perfect for language translation, speech recognition, and predicting stock prices. However, they struggle
+        with very long sequences due to the <span class="highlight-term">vanishing gradient problem</span>.
+      </p>
+    </div>
+
+    <div class="comparison-box">
+      <h3>Transformer Networks</h3>
+      <p>
+        <strong>Best for:</strong> Large-scale language tasks
+      </p>
+      <p>
+        Transformers revolutionized AI by processing entire sequences in parallel using <span class="highlight-term">attention mechanisms</span>.
+        Instead of processing words one at a time, they can focus on the most relevant words instantly. This is why
+        they power all modern large language models.
+      </p>
+    </div>
+
+    <hr class="divider" />
+  </section>
+
+  <section id="future">
+    <h2 class="section-title">The Future of Neural Networks</h2>
+
+    <p>
+      The field of neural networks is evolving at an unprecedented pace. Researchers are tackling some of the
+      biggest challenges in AI, from improving efficiency to making models more interpretable.
+    </p>
+
+    <div class="tech-list">
+      <h3>Emerging Trends & Challenges</h3>
+      <ul>
+        <li><strong>Energy Efficiency:</strong> Training large models consumes enormous amounts of electricity. New techniques aim to do more with less.</li>
+        <li><strong>Explainability:</strong> We need to understand <em>why</em> neural networks make certain decisions, especially in critical fields like healthcare.</li>
+        <li><strong>Few-Shot Learning:</strong> Current models require massive datasets. Future networks will learn from fewer examples, like humans do.</li>
+        <li><strong>Multimodal AI:</strong> Networks that understand text, images, and audio together will unlock new possibilities.</li>
+        <li><strong>Quantum Neural Networks:</strong> Quantum computing could accelerate neural network training by orders of magnitude.</li>
+        <li><strong>Neuromorphic Hardware:</strong> Chips designed to mimic the brain's structure could be far more efficient than traditional computers.</li>
+      </ul>
+    </div>
+
+    <p>
+      The next decade will likely see neural networks become even more powerful, efficient, and integrated into
+      every aspect of technology. The question is no longer "What can neural networks do?" but rather
+      <span class="highlight-term">"What problems should we solve with them?"</span>
+    </p>
+  </section>
+
+</div>
+
+<div style="text-align: center; padding: 40px 24px; background-color: #f4f1eb;">
+  <a href="index_Project_1.html" class="back-link">← Return to Main Page (Project 1)</a>
+</div>
+
+<footer>
+  <p>Created by <strong>Ghasadiya Hastin</strong> &nbsp;|&nbsp; Web Development HW2 &nbsp;|&nbsp; LIU Brooklyn</p>
+</footer>
+
+</body>
+</html>
